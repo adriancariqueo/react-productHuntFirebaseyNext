@@ -16,7 +16,7 @@ const useValidacion = (stateInicial, validar, fn) => {
             setsubmitForm(false);
         }
 
-    }, [])
+    }, [errores])
 
     //Funcion que valida cuando el usuario escribe algo
     const handleChange = e =>{
@@ -33,12 +33,18 @@ const useValidacion = (stateInicial, validar, fn) => {
         setsubmitForm(true);
     }
 
+    const handleBlur = () => {
+        const errorValidaciones = validar(valores);
+        setErrores(errorValidaciones);
+    }
+
     return {
         valores,
         errores,
         submitForm,
         handleSubmit,
-        handleChange
+        handleChange,
+        handleBlur
     }
 }
 
